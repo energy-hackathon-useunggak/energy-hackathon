@@ -5,7 +5,6 @@ var Schema = mongoose.Schema;
 var crypto = require('crypto');
 var authTypes = ['github', 'twitter', 'facebook', 'google'];
 
-
 var UserSchema = new Schema({
   name: String,
   email: { type: String, lowercase: true },
@@ -17,6 +16,7 @@ var UserSchema = new Schema({
   provider: String,
   salt: String,
   facebook: {},
+  encored: {},
   github: {}
 });
 
@@ -100,10 +100,10 @@ UserSchema
   .pre('save', function(next) {
     if (!this.isNew) return next();
 
-    if (!validatePresenceOf(this.hashedPassword) && authTypes.indexOf(this.provider) === -1)
-      next(new Error('Invalid password'));
-    else
-      next();
+    //if (!validatePresenceOf(this.hashedPassword) && authTypes.indexOf(this.provider) === -1)
+    //  next(new Error('Invalid password'));
+    //else
+    next();
   });
 
 /**

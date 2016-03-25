@@ -16,6 +16,14 @@ var path = require('path');
 var config = require('./environment');
 var passport = require('passport');
 
+passport.serializeUser(function(user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function(obj, done) {
+  done(null, obj);
+});
+
 module.exports = function(app) {
   var env = app.get('env');
 
