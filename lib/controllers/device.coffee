@@ -14,13 +14,15 @@ exports.getDevices = (req, res) ->
       return res2.sendStatus(500)
 
     for item in body
-      Device.find uuid:body.uuid, (err, device) ->
-        if !device
-          device = new Device
-          device.user = req.user._id
-          device.model = item.model
-          device.uuid = item.uuid
-          await device.save defer e, model
+      await Device.findOne uuid:item.uuid
+      .exec defer(err, device)
+
+      if !device
+        await Device.create
+          user : req.user._id
+          model : item.model
+          uuid : item.uuid
+        ,defer e, model
 
     await Device.find
       user:req.user._id
