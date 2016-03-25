@@ -5,11 +5,12 @@ angular.module 'energyHackathonApp', [
   'ngResource',
   'ngSanitize',
   'btford.socket-io',
-  'ui.router'
+  'ui.router',
+  'dndLists'
 ]
 .config ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) ->
-  $urlRouterProvider
-  .otherwise '/'
+  # $urlRouterProvider
+  # .otherwise '/'
 
   $locationProvider.html5Mode true
   $httpProvider.interceptors.push 'authInterceptor'

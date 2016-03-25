@@ -1,0 +1,6 @@
+.register-controller
+  .header
+    h1.title {{ currentRegisterTitle }}
+  .body(ui-view="")
+  .footer
+    button(ng-click="goNextState()") 다음
