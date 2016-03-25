@@ -18,6 +18,7 @@ redis           = require 'redis'
 
 
 client = redis.createClient()
+viewPath = path.resolve '../dist'
 
 # Express configuration
 module.exports = (app) ->
@@ -35,15 +36,20 @@ module.exports = (app) ->
         next()
 
     app.use(crossDomain)
-    app.use(express.static(path.join('../dist', '../public')))
-    app.use(express.static(path.join('../dist', 'client'), index: false))
-    app.use(express.static(path.join('../dist', 'public')))
+
+    app.use(express.static(path.join(viewPath, '../public')))
+    console.log path.join(viewPath, '../public')
+    console.log path.join(viewPath, 'client')
+    console.log path.join(viewPath, 'public')
+
+    app.use(express.static(path.join(viewPath, 'client'), index: false))
+    app.use(express.static(path.join(viewPath, 'public')))
 
   if 'production' is env
     app.set('trust proxy', true)
     app.use(compression())
-    app.use(favicon(path.join('../dist', 'public', 'favicon.ico')))
-    app.use(express.static(path.join('../dist', 'public'), index: false))
+    app.use(favicon(path.join(viewPath, 'public', 'favicon.ico')))
+    app.use(express.static(path.join(viewPath, 'public'), index: false))
 
   noCache = (req, res, next) ->
     if req.url.indexOf('/api/') is 0
@@ -54,7 +60,6 @@ module.exports = (app) ->
 
   app.use(noCache)
 
-  apiPath = path.join('../dist', 'lib/views').toString()
 
   app.engine('jade', require('jade').__express)
   app.engine('html', require('ejs').renderFile)
