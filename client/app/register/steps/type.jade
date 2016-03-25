@@ -1,7 +1,11 @@
 .register-type
-  .trigger
-    label(for="datetime") 날짜 / 시간
-    input(type="radio" name="type" ng-model="recipe.type" value="datetime")
-  .trigger
-    label(for="usage") 전력 사용량
-    input(type="radio" name="type" ng-model="recipe.type" value="usage")
+  .title
+    | 레시피를 새로 만듭니다.
+  .notice
+    | 클릭해서 설정을 시작해주세요.
+  .recipe-list
+    .recipe
+      a(ui-sref="register.datetime") 날짜/시간 별 설정
+    .recipe
+      a(ui-sref="register.usage") 전력 사용량
+    

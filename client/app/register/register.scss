@@ -16,10 +16,56 @@
 
 .register-controller {
   @include full-screen;
-  .top {
-    height: 48px;
-    h1.title {
-      margin: 0;
+  padding: 96px;
+  .body {
+    padding-right: 48px;
+    .title {
+      margin-bottom: 24px;
+    }
+    .notice {
+      font-weight: bold;
+      margin-bottom: 180px;
+    }
+    .recipe-list {
+      .recipe {
+        margin-bottom: 20px;
+        a {
+          font-size: 48px;
+          color: $orange;
+          padding-bottom: 1px;
+          border-bottom: 3px solid $orange;
+          text-decoration: none;
+        }
+      }
+    }
+    .form-string {
+      font-size: 48px;
+      margin-bottom: 48px;
+      .select-wrapper {
+        height: 72px;
+        display: inline-block;
+        border-bottom: 2px solid $orange;
+        margin-right: 24px;
+        select {
+          @include appearance(none);
+          @include border-radius(0);
+          border: 0;
+          background: none;
+          height: 72px;
+          padding-right: 24px;
+        }
+        &:after {
+          font-size: 24px;
+          content: '\25BE';
+        }
+      }
+
+      input {
+        border: 0;
+        border-bottom: 2px solid $orange;
+        max-width: 120px;
+        height: 72px;
+      }
     }
   }
 }

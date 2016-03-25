@@ -1,8 +1,15 @@
 .register-action
-  select(ng-model="recipe.device")
-    option(ng-repeat="device in devices" value="{{ device.uuid }}") {{ device.name }}
-  | 의 전원을
-  select(ng-model="recipe.action")
-    option(value="on") 켭니다
-    option(value="off") 끕니다
-    option(value="toggle") 토글합니다
+  .title 
+    | 날짜/시간 별 동작 설정
+  .notice
+    | 클릭해서 동작을 입력해주세요.
+  .form-string
+    .select-wrapper
+      select(ng-model="recipe.device")
+        option(ng-repeat="device in devices" value="{{ device.uuid }}") {{ device.name }}
+    | 의 전원을
+    .select-wrapper
+      select(ng-model="recipe.action")
+        option(value="on") 켭니다
+        option(value="off") 끕니다
+        option(value="toggle") 토글합니다
