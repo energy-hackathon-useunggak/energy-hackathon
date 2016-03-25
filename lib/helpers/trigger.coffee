@@ -1,6 +1,7 @@
 'use strict'
 
 # Module dependencies.
+path          = require 'path'
 childProcess  = require 'child_process'
 debug         = require 'debug'
 
@@ -65,7 +66,7 @@ class Trigger
           @_queue.forEach (msg) =>
             @worker.send(msg)
 
-    worker = childProcess.fork "./triggers/#{@name}/dispatcher"
+    worker = childProcess.fork path.join(__dirname, "../triggers/#{@name}/dispatcher")
     worker.on 'message', onWorkerOnline
     worker.on 'exit', @onWorkerDie.bind(this)
 
