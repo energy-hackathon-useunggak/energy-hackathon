@@ -11,7 +11,5 @@ router
 
   .get('/callback',
     passport.authenticate('encored-enertalk', { failureRedirect: '/' }),
-    function(req, res) {
-      res.redirect('/');
-    });
+    auth.setTokenCookie);
 module.exports = router;
