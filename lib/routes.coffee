@@ -12,5 +12,9 @@ module.exports = (app, io) ->
       res.redirect('/')
   )
 
+  app.route('/api/*')
+    .get (req, res) ->
+      res.sendStatus(404)
+
   app.route('/*')
     .get(index.index)
