@@ -11,4 +11,3 @@ module.exports =
 
     res.status 401
     .send authError: true
-

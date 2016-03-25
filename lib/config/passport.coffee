@@ -1,6 +1,7 @@
 "use strict"
 
 mongoose                  = require 'mongoose'
+_                         = require 'underscore'
 User                      = mongoose.model 'User'
 passport                  = require 'passport'
 EncoredEnertalkStrategy   = require('passport-encored-enertalk').Strategy
@@ -12,8 +13,7 @@ passport.serializeUser (user, done) ->
   done null, (if user._id then user._id.toString() else user.id)
 
 passport.deserializeUser (id, done) ->
-  User.findOne
-    'encored.id': id
+  User.findById id
   .exec (err, user) ->
     done err, user
 
@@ -24,7 +24,7 @@ passport.use new EncoredEnertalkStrategy
   callbackURL: process.env.ENCORED_ENERTALK_CALLBACK_URL
 , (accessToken, refreshToken, profile, done) ->
   User.findOne
-    'encored.id': profile.id
+    'encored.userId': profile.id
   .exec (e, user) ->
     return done(e) if e
 

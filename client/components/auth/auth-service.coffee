@@ -2,7 +2,7 @@
 
 angular.module 'energyHackathonApp'
 .factory 'Auth', ($location, $rootScope, $http, User, $cookieStore, $q) ->
-  currentUser = if $cookieStore.get 'token' then User.get() else {}
+  currentUser = User.get()
 
   ###
   Authenticate user and save token
