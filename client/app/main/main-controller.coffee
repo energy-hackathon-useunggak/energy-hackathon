@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module 'energyHackathonApp'
-.controller 'MainCtrl', ($scope, $http, socket, Device, $window) ->
+.controller 'MainCtrl', ($scope, $http, Device, $window) ->
 
   $scope.addThing = ->
     Device.get()
