@@ -1,0 +1,15 @@
+.register-usage
+  .form-string
+    input(type="number" ng-model="recipe.usage.minute")
+    | 분 동안,
+    .select-wrapper
+      select(ng-model="recipe.usage.device")
+        option(ng-repeat="device in devices" value="{{ device.uuid }}") {{ device.name }}
+    | 가 사용한 전력의 평균이
+    input(type="number" ng-model="recipe.usage.value")
+    | W
+    .select-wrapper
+      select(ng-model="recipe.usage.condition")
+        option(value="over") 이상
+        option(value="under") 미만
+    | 일 때
