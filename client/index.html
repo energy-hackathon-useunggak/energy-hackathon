@@ -11,18 +11,38 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(client) app/vendor.css -->
+
+    <!-- build:vendorCss(dist/client) /app/vendor.css -->
       <!-- bower:css -->
-      <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css" />
-      <!-- endbower -->
+      <!-- endinject -->
     <!-- endbuild -->
-    <!-- build:css({.tmp,client}) app/app.css -->
-    <link rel="stylesheet" href="app/app.css">
-      <!-- injector:css -->
-      <!-- endinjector -->
+
+    <!-- build:appCss(dist/client) /app/app.css -->
+      <!-- sassApp:css -->
+      <!-- endinject -->
     <!-- endbuild -->
+
+    <!-- build:componentsCss(dist/client) /app/components.css -->
+      <!-- sassComponents:css -->
+      <!-- endinject -->
+    <!-- endbuild -->
+
+    <!--[if lte IE 9]>
+      <!-- compat:css -->
+      <!-- endinject -->
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <!-- build:polyfillJs(dist/client) /app/polyfill.js -->
+      <script type="text/javascript" src="/bower_components/html5shiv/dist/html5shiv.js"></script>
+      <script type="text/javascript" src="/bower_components/es5-shim/es5-shim.js"></script>
+      <script type="text/javascript" src="/bower_components/json3/lib/json3.min.js"></script>
+      <!-- endbuild -->
+    <![endif]-->
+
   </head>
   <body ng-app="energyHackathonApp">
+    <!-- browsersync -->
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -41,29 +61,16 @@
       ga('send', 'pageview');
     </script>
 
-    <!--[if lt IE 9]>
-    <script src="bower_components/es5-shim/es5-shim.js"></script>
-    <script src="bower_components/json3/lib/json3.min.js"></script>
-    <![endif]-->
-    <!-- build:js({client,node_modules}) app/vendor.js -->
+    <!-- build:vendorJs(dist/client) /app/vendor.js -->
+      <script type="text/javascript" src="/bower_components/underscore/underscore.js"></script>
+      <script type="text/javascript" src="/bower_components/jquery/dist/jquery.js"></script>
       <!-- bower:js -->
-      <script src="bower_components/jquery/dist/jquery.js"></script>
-      <script src="bower_components/angular/angular.js"></script>
-      <script src="bower_components/angular-resource/angular-resource.js"></script>
-      <script src="bower_components/angular-cookies/angular-cookies.js"></script>
-      <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-      <script src="bower_components/lodash/dist/lodash.compat.js"></script>
-      <script src="bower_components/angular-socket-io/socket.js"></script>
-      <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-      <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
-      <script src="bower_components/angular-animate/angular-animate.js"></script>
-      <!-- endbower -->
-      <script src="socket.io-client/socket.io.js"></script>
+      <!-- endinject -->
     <!-- endbuild -->
 
-        
+
         <!-- build:js({.tmp,client}) app/app.js -->
-        
+
         <script src="app/app.js"></script>
           <!-- injector:js -->
           <script src="app/account/account.js"></script>
@@ -85,5 +92,14 @@
           <script src="components/socket/socket.service.js"></script>
           <!-- endinjector -->
         <!-- endbuild -->
+    <!-- build:appJs(dist/client) /app/app.js -->
+      <script type="text/javascript" src="/app/app.js"></script>
+      <!-- jsApp:js -->
+      <!-- endinject -->
+    <!-- endbuild -->
+    <!-- build:componentsJs(dist/client) /app/components.js -->
+      <!-- jsComponents:js -->
+      <!-- endinject -->
+    <!-- endbuild -->
 </body>
 </html>
