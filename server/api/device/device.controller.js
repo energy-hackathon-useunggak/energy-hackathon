@@ -1,9 +1,14 @@
 'use strict';
 
-var User = require('./user.model');
+var User = require('../user/user.model');
 var passport = require('passport');
 var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
+
+
+const
+  oauth2Request = require('../../lib/oauth2-request');
+
 
 var validationError = function(res, err) {
   return res.status(422).json(err);
@@ -14,10 +19,7 @@ var validationError = function(res, err) {
  * restriction: 'admin'
  */
 exports.index = function(req, res) {
-  User.find({}, '-salt -hashedPassword', function (err, users) {
-    if(err) return res.status(500).send(err);
-    res.status(200).json(users);
-  });
+
 };
 
 /**
@@ -98,4 +100,24 @@ exports.me = function(req, res, next) {
  */
 exports.authCallback = function(req, res, next) {
   res.redirect('/');
+};
+
+
+/**
+ * Get devices which associated with current user.
+ */
+exports.getDevices = (req, res) => {
+  console.log(req.user);
+  oauth2Request(req.user, {
+    method: 'GET',
+    url: 'https://api.encoredtech.com/1.2/devices/list',
+    json: true
+  }, (e, body, res) => {
+    if (e) {
+      console.error(e.stack);
+      return res.sendStatus(500);
+    }
+
+    res.send(body);
+  });
 };
