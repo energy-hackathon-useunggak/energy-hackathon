@@ -5,6 +5,8 @@ angular.module 'energyHackathonApp'
 
   $scope.addThing = ->
     Device.get()
+    .$promise.then (devices) ->
+      console.log devices
 #    return if $scope.newThing is ''
 #    $http.post '/api/things',
 #      name: $scope.newThing
