@@ -1,21 +1,23 @@
 'use strict'
 
 angular.module 'energyHackathonApp'
-.controller 'RegisterCtrl', ($scope, $state, toastr) ->
+.controller 'RegisterCtrl', ($scope, $state, toastr, Device) ->
   $scope.currentRegisterTitle = '새로운 레시피를 만듭니다.'
-  $scope.devices = [
-    name: '냉장고',
-    uuid: '1'
-  ,
-    name: '충전기',
-    uuid: '2'
-  ,
-    name: '세탁기',
-    uuid: '3'
-  ,
-    name: '스탠드',
-    uuid: '4'
-  ]
+  $scope.devices = Device.get()
+
+#  $scope.devices = [
+#    name: '냉장고',
+#    uuid: '1'
+#  ,
+#    name: '충전기',
+#    uuid: '2'
+#  ,
+#    name: '세탁기',
+#    uuid: '3'
+#  ,
+#    name: '스탠드',
+#    uuid: '4'
+#  ]
 
   $scope.periods = [ '시', '일', '주', '달' ]
   $scope.daysofweek = [ '일', '월', '화', '수', '목', '금', '토' ]
