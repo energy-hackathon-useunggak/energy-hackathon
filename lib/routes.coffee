@@ -3,6 +3,7 @@
 passport      = require 'passport'
 middleware    = require './middleware'
 index         = require './controllers/index'
+devices = require './controllers/device'
 
 module.exports = (app, io) ->
   app.get('/auth/encored-enertalk', passport.authenticate('encored-enertalk'))
@@ -11,6 +12,8 @@ module.exports = (app, io) ->
     (req, res) ->
       res.redirect('/')
   )
+  app.get('/api/devices', middleware.auth, devices.getDevices);
+
 
   app.route('/api/*')
     .get (req, res) ->
