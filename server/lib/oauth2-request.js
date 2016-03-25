@@ -4,36 +4,36 @@
  * Module dependencies.
  */
 
-const
+var
   _       = require('underscore'),
   request = require('request');
 
 
-const
-  // @todo Migrate const values into .env file
+var
+  // @todo Migrate var values into .env file
   ENCORED_ENERTALK_CLIENT_ID = 'bW9veW91bEBnbWFpbC5jb21fcGFzc3BvcnQtZW5jb3JlZC1lbmVydGFsay1leGFtcGxl',
   ENCORED_ENERTALK_CLIENT_SERCRET = 'cy1em4tw5qg8p38qo9dy0c834h6xg96l9td4ds1',
   ENCORED_ENERTALK_TOKEN_ENDPOINT = 'https://enertalk-auth.encoredtech.com/token',
-  noop = () => {};
+  noop = function(){};
 
 /**
  * @params {User}     user      User Model
  * @params {Object}   options   options will be passed to `request` module.
  * @return {request}
  */
-module.exports = exports = (user, options, done) => {
-  const
+module.exports = exports = function(user, options, done) {
+  var
     accessToken = user.accessToken,
     refreshToken = user.refreshToken,
 
   _options = options || {};
   _options.headers = _.extend(_options.headers || {}, {
-    Authorization: `Bearer ${accessToken}`
+    Authorization: 'Bearer ' + accessToken
   });
 
   done = done || noop;
 
-  return request(_options, (e, res, body) => {
+  return request(_options, function(e, res, body) {
     if (e) { return done(e); }
 
 
@@ -43,19 +43,19 @@ module.exports = exports = (user, options, done) => {
 
     // 403 Unauthorized
     // Maybe access token expired? try to renew token
-    let basicAuth = (new Buffer(`${ENCORED_ENERTALK_CLIENT_ID}:${ENCORED_ENERTALK_CLIENT_SERCRET}`)).toString('base64');
+    var basicAuth = (new Buffer(ENCORED_ENERTALK_CLIENT_ID + ':' + ENCORED_ENERTALK_CLIENT_SERCRET)).toString('base64');
 
     request({
       method: 'POST',
       url: ENCORED_ENERTALK_TOKEN_ENDPOINT,
       headers: {
-        Authorization: `Basic ${basicAuth}`
+        Authorization: 'Basic ' + basicAuth
       },
       form: {
         grant_type: 'refresh_token',
         refresh_token: refreshToken
       }
-    }, (e, res, body) => {
+    }, function(e, res, body) {
       if (e) { return done(e); }
 
       if (res.statusCode !== 200) {
@@ -70,10 +70,10 @@ module.exports = exports = (user, options, done) => {
         }
       }
       _.extend(_options, {
-        Authorization: `Bearer ${body.accessToken}`
+        Authorization: 'Bearer' + body.accessToken
       });
 
-      request(_options, (e, res, _body) => {
+      request(_options, function(e, res, _body) {
         if (e) { return done(e); }
 
         done(null, _body, res);
@@ -83,7 +83,7 @@ module.exports = exports = (user, options, done) => {
           refreshToken: body.refreshToken,
         });
 
-        user.save((e) => {
+        user.save(function(e) {
           console.error(e.stack);
         })
       });

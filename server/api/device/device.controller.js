@@ -6,8 +6,7 @@ var config = require('../../config/environment');
 var jwt = require('jsonwebtoken');
 
 
-const
-  oauth2Request = require('../../lib/oauth2-request');
+var oauth2Request = require('../../lib/oauth2-request');
 
 
 var validationError = function(res, err) {
@@ -106,13 +105,13 @@ exports.authCallback = function(req, res, next) {
 /**
  * Get devices which associated with current user.
  */
-exports.getDevices = (req, res) => {
+exports.getDevices = function(req, res) {
   console.log(req.user);
   oauth2Request(req.user, {
     method: 'GET',
     url: 'https://api.encoredtech.com/1.2/devices/list',
     json: true
-  }, (e, body, res) => {
+  }, function(e, body, res) {
     if (e) {
       console.error(e.stack);
       return res.sendStatus(500);

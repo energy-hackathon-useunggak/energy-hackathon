@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-const
+var
   childProcess  = require('child_process'),
   debug         = require('debug');
 
@@ -14,7 +14,7 @@ const
  * Module-specific configurations.
  */
 
-const
+var
   log           = debug('energy-hackathon:Trigger');
 
 
@@ -26,9 +26,9 @@ function ValidationError(message) {
   this.status = 400;
 }
 
-const noop = () => {};
+var noop = function () {};
 
-const Trigger = function TriggerConstructor () {
+var Trigger = function TriggerConstructor () {
   this.worker = null;
   this.name = 'Trigger';
   this._queue = [];
@@ -38,7 +38,7 @@ const Trigger = function TriggerConstructor () {
 Trigger.prototype.create = function create (data, done) {
   log('Create trigger, validate data...', data);
 
-  this.validate(data, (e) => {
+  this.validate(data, function(e) {
     if (e) { return done(e); }
 
     log('Got valid data.');
@@ -50,13 +50,13 @@ Trigger.prototype.create = function create (data, done) {
 
 
     this.worker ? this.worker.send(message) : this._queue.push(message);
-  });
+  }.bind(this));
 };
 
 Trigger.prototype.validate = function validate (data, done) {
   done = done || noop;
 
-  process.nextTick(() => {
+  process.nextTick(function() {
     done(null);
   });
 };
@@ -70,10 +70,10 @@ Trigger.prototype.run = function run () {
 
   var worker = null;
 
-  const
-    onWorkerOnline = (data) => {
+  var
+    onWorkerOnline = function(data) {
       log('Got message from worker: ', data);
-      const evt = data && data.event;
+      var evt = data && data.event;
 
       if (evt === 'online') {
         worker.removeListener('message', onWorkerOnline);
@@ -82,10 +82,10 @@ Trigger.prototype.run = function run () {
 
         // @todo Reload previous subscribers
         if (this._queue.length) {
-          this._queue.forEach((msg) => this.worker.send(msg));
+          this._queue.forEach(function(msg) { this.worker.send(msg); }.bind(this));
         }
       }
-    };
+    }.bind(this);
 
 
   worker = childProcess.fork(`./triggers/${this.name}/dispatcher`);
@@ -102,7 +102,7 @@ Trigger.prototype.onWorkerDie = function onWorkerDie (code, signal) {
 
 
 Trigger.prototype.onWorkerMessage = function onWorkerMessage (data) {
-  const evt = data && data.event;
+  var evt = data && data.event;
 
   if (evt === 'publish') {
     log('Got publish event: ', data);
