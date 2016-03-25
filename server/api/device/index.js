@@ -8,6 +8,6 @@ var auth = require('../../auth/auth.service');
 
 var router = express.Router();
 
-router.get('/', controller.getDevices);
+router.get('/', auth.hasRole('user'), controller.getDevices);
 
 module.exports = router;
