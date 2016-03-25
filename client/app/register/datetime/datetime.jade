@@ -1,0 +1,32 @@
+.register-datetime
+  .title 
+    | 날짜/시간 별 설정
+  .notice
+    | 클릭해서 시간을 입력해주세요.
+  .form-string 
+    | 매 
+    .select-wrapper
+      select(ng-model="period")
+        option(ng-repeat="peri in periods" value="{{ peri }}") {{ peri }}
+    input(type="number" ng-model="day" ng-show="period === '달'")
+    span(ng-show="period === '달'") 일 
+    .select-wrapper(ng-show="period === '주'")
+      select(ng-model="dayofweek")
+        option(ng-repeat="day in daysofweek" value="{{ $index }}") {{ day }}
+    span(ng-show="period === '주'") 요일 
+    input(type="number" ng-model="hour" ng-show="period === '주' || period === '일' || period === '달'")
+    span(ng-show="period === '주' || period === '일' || period === '달'") 시 
+    input(type="number" ng-model="minute" ng-show="period === '시' || period === '일'")
+    span(ng-show="period === '시' || period === '일'") 분 
+    | 마다
+  .form-string
+    .select-wrapper
+      select(ng-model="recipe.device")
+        option(ng-repeat="device in devices" value="{{ device.uuid }}") {{ device.name }}
+    | 의 전원을 
+    .select-wrapper
+      select(ng-model="recipe.action")
+        option(value="on") 켭니다
+        option(value="off") 끕니다
+        option(value="toggle") 토글합니다
+  button.primary-button(ng-click="createRecipe()" ) 설정 완료하기 >

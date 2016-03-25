@@ -1,0 +1,65 @@
+$teal: lighten(teal, 40);
+$teal-dark: lighten(teal, 10);
+$orange: #FBA34A;
+$orange-dark: darken(#FBA34A, 20);
+$white: #fff;
+
+@mixin transition($transitions...) {
+  -moz-transition:    $transitions;
+  -o-transition:      $transitions;
+  -webkit-transition: $transitions;
+  transition:         $transitions;
+}
+
+@mixin transform($transform) {
+  -webkit-transform: $transform;
+  -ms-transform:     $transform;
+  transform:         $transform;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius:    $radius;
+  -ms-border-radius:     $radius;
+  border-radius:         $radius;
+}
+
+@mixin appearance($appearance) {
+  -webkit-appearance: $appearance;
+  -moz-appearance:    $appearance;
+  appearance:         $appearance;
+  &::-ms-expand {
+    display: none;
+  }
+}
+
+@mixin full-screen {
+  position: absolute;
+  left:     0;
+  right:    0;
+  top:      0;
+  bottom:   0;
+}
+
+@mixin vertical-center {
+  position: absolute;
+  top:      50%;
+  @include transform(translateY(-50%));
+}
+
+@mixin normalize-button {
+  border: 0;
+  cursor: pointer;
+  display: inline-block;
+  @include border-radius(2px);
+}
+
+@mixin primary-button {
+  @include normalize-button;
+  background-color: $orange;
+  color: $white;
+
+  &:hover {
+    background-color: $orange-dark;
+  }
+}

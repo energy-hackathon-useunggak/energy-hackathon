@@ -13,7 +13,8 @@ angular.module 'energyHackathonApp'
     templateUrl: 'app/register/steps/type.html'
   .state 'register.datetime',
     url: '/datetime'
-    templateUrl: 'app/register/steps/datetime.html'
+    templateUrl: 'app/register/datetime/datetime.html'
+    controller: 'DatetimeCtrl'
   .state 'register.usage',
     url: '/usage'
     templateUrl: 'app/register/steps/usage.html'

@@ -1,7 +1,8 @@
 .register-controller
-  .header
-    h1.title {{ currentRegisterTitle }}
   .body(ui-view="")
-  .footer
-    button(ng-click="goNextState()")
-      | {{ $state.is('register.action') ? '완료' : '다음' }}
+  //- .header
+  //-   h1.title {{ currentRegisterTitle }}
+  //- .body(ui-view="")
+  //- .footer
+  //-   button(ng-click="goNextState()")
+  //-     | {{ $state.is('register.action') ? '완료' : '다음' }}

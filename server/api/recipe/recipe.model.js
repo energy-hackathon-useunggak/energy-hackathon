@@ -1,7 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose');
-var RecipeSchema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
 var RecipeSchema = new Schema({
   user: {type: mongoose.Schema.ObjectId,ref: 'User'},
@@ -18,4 +18,4 @@ var RecipeSchema = new Schema({
   type: {type:String, enum:["datetime","usage"]}
 });
 
-module.exports = mongoose.model('Recipe', Schema);
+module.exports = mongoose.model('Recipe', RecipeSchema);
