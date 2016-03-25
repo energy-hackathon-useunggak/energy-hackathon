@@ -13,7 +13,7 @@ noop = () ->
 
 class DateTimeTrigger extends Trigger
   constructor: () ->
-    @super()
+    super()
     @name = 'datetime'
   validate: (data, done) ->
     done = done || noop;

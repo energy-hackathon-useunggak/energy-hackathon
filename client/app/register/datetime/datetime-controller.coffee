@@ -24,7 +24,7 @@ angular.module 'energyHackathonApp'
 
   getCronDate = () ->
     if $scope.period is '월'
-      return '00 00 ' + $scope.hour + ' ' + $scope.day + ' *'
+      return '00 00 ' + $scope.hour + ' ' + $scope.day + ' * *'
     else if $scope.period is '주'
       return '00 00 ' + $scope.hour + ' * * ' + $scope.dayofweek
     else if $scope.period is '일'
