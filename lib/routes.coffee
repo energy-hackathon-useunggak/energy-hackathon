@@ -13,7 +13,8 @@ module.exports = (app, io) ->
       res.redirect('/')
   )
   app.get('/api/devices', middleware.auth, devices.getDevices);
-
+  app.get('/api/recipies', middleware.auth, controller.index);
+  app.post('/api/recipies', middleware.auth, controller.create);
 
   app.route('/api/*')
     .get (req, res) ->
