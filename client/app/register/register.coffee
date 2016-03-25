@@ -17,7 +17,8 @@ angular.module 'energyHackathonApp'
     controller: 'DatetimeCtrl'
   .state 'register.usage',
     url: '/usage'
-    templateUrl: 'app/register/steps/usage.html'
+    templateUrl: 'app/register/usage/usage.html'
+    controller: 'UsageCtrl'
   .state 'register.action',
     url: '/action'
     templateUrl: 'app/register/steps/action.html'
