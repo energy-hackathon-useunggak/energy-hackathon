@@ -24,11 +24,11 @@ angular.module 'energyHackathonApp'
     usage: {}
     device: $scope.devices[0]
 
-  $scope.period = '일'
-  $scope.hour = 12
-  $scope.minute = 30
-  $scope.day = 28
-  $scope.dayofweek = 1
+  # $scope.period = '일'
+  # $scope.hour = 12
+  # $scope.minute = 30
+  # $scope.day = 28
+  # $scope.dayofweek = 1
 
   getCronDate = () ->
     if $scope.period is '월'

@@ -67,5 +67,12 @@
         height: 72px;
       }
     }
+    button.primary-button {
+      margin-top: 24px;
+      font-size: 18px;
+      height: 48px;
+      width: 180px;
+      @include primary-button;
+    }
   }
 }

@@ -1,6 +1,7 @@
 $teal: lighten(teal, 40);
 $teal-dark: lighten(teal, 10);
 $orange: #FBA34A;
+$orange-dark: darken(#FBA34A, 20);
 $white: #fff;
 
 @mixin transition($transitions...) {
@@ -55,10 +56,10 @@ $white: #fff;
 
 @mixin primary-button {
   @include normalize-button;
-  background-color: $teal;
+  background-color: $orange;
   color: $white;
 
   &:hover {
-    background-color: $teal-dark;
+    background-color: $orange-dark;
   }
 }

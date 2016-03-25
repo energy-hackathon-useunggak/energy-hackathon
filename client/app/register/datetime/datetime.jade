@@ -19,7 +19,7 @@
     input(type="number" ng-model="minute" ng-show="period === '시' || period === '일'")
     span(ng-show="period === '시' || period === '일'") 분 
     | 마다
-  .form-string(ng-show="(minute && (period === '일' || period === '시')) || (hour && (period === '달') || (period === '일'))")
+  .form-string
     .select-wrapper
       select(ng-model="recipe.device")
         option(ng-repeat="device in devices" value="{{ device.uuid }}") {{ device.name }}
@@ -29,3 +29,4 @@
         option(value="on") 켭니다
         option(value="off") 끕니다
         option(value="toggle") 토글합니다
+  button.primary-button(ng-click="createRecipe()" ) 설정 완료하기 >
