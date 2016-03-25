@@ -8,10 +8,10 @@ var validationError = function(res, err) {
 };
 
 exports.index = function(req, res) {
-  Recipe.find({user:req.user._id}.populate('device'), function (err, recipes) {
+  Recipe.find({user:req.user._id}, function (err, recipes) {
     if(err) return res.status(500).send(err);
     res.status(200).json(recipes);
-  });
+  }).populate('device');
 };
 
 exports.create = function (req, res, next) {

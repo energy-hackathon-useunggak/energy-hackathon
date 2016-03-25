@@ -1,9 +1,9 @@
 'use strict'
 
 angular.module 'energyHackathonApp'
-.factory 'Recipe', ($resource) ->
-  $resource '/api/recipes/',
-  {},
+.factory 'Device', ($resource) ->
+  $resource '/api/devices/',
+    {},
     get:
       method: 'GET'
       isArray: true
