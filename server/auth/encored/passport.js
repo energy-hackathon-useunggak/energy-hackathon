@@ -19,11 +19,11 @@ exports.setup = function (User, config) {
       clientID: ENCORED_ENERTALK_CLIENT_ID,
       clientSecret: ENCORED_ENERTALK_CLIENT_SERCRET,
       callbackURL: 'http://127.0.0.1:9000/auth/encored-enertalk/callback'
-    }, (accessToken, refreshToken, profile, done) => {
+    }, function(accessToken, refreshToken, profile, done) {
 
     User.findOne({
       'encored': profile.id
-    }, (err, user) => {
+    }, function(err, user) {
       if (err) {
         return done(err);
       }
@@ -45,7 +45,7 @@ exports.setup = function (User, config) {
         });
       }
 
-      user.save((err) => {
+      user.save(function(err) {
         if (err) return done(err);
         done(null, user);
       });
