@@ -1,16 +1,14 @@
 'use strict'
 
 passport = require('passport')
-oauth2Request = require('../../lib/oauth2-request')
+oauth2Request = require('../helpers/oauth2-request')
 mongoose = require('mongoose')
 Device = mongoose.model('Device')
 
 exports.getDevices = (req, res) ->
-  oauth2Request req.user,
-    method: 'GET'
-    url: 'https://api.encoredtech.com/1.2/devices/list'
-    json: true
-  ,(e, body, res2) ->
+  oauth2Request req.user, {method: 'GET', url: 'https://api.encoredtech.com/1.2/devices/list', json: true}, (e, body, res2) ->
+    console.log body
+
     if e
       console.error(e.stack)
       return res2.sendStatus(500)
