@@ -1,5 +1,11 @@
+/**
+ * Module dependencies.
+ */
+
 var passport = require('passport');
 var EncoredEnertalkStrategy = require('passport-encored-enertalk').Strategy;
+
+const _ = require('underscore');
 
 /**
  * Configurations.
@@ -13,31 +19,36 @@ exports.setup = function (User, config) {
       clientID: ENCORED_ENERTALK_CLIENT_ID,
       clientSecret: ENCORED_ENERTALK_CLIENT_SERCRET,
       callbackURL: 'http://127.0.0.1:9000/auth/encored-enertalk/callback'
-    },
-    function(accessToken, refreshToken, profile, done) {
-      User.findOne({
-          'encored': profile.id
-        },
-        function(err, user) {
-          if (err) {
-            return done(err);
-          }
-          if (!user) {
-            user = new User({
-              name: "test",
-              email: profile.email,
-              role: 'user',
-              provider: 'encored',
-              encored: profile._json.userId
-            });
-            user.save(function(err) {
-              if (err) return done(err);
-              done(err, user);
-            });
-          } else {
-            return done(err, user);
-          }
-        })
-    }
-  ));
+    }, (accessToken, refreshToken, profile, done) => {
+
+    User.findOne({
+      'encored': profile.id
+    }, (err, user) => {
+      if (err) {
+        return done(err);
+      }
+
+      if (!user) {
+        user = new User({
+          name: "test",
+          email: profile.email,
+          role: 'user',
+          provider: 'encored',
+          encored: profile._json.userId,
+          accessToken: accessToken,
+          refreshToken: refreshToken
+        });
+      } else {
+        _.extend(user, {
+          accessToken: accessToken,
+          refreshToken: refreshToken
+        });
+      }
+
+      user.save((err) => {
+        if (err) return done(err);
+        done(null, user);
+      });
+    });
+  }));
 };
