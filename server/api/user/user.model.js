@@ -17,7 +17,9 @@ var UserSchema = new Schema({
   salt: String,
   facebook: {},
   encored: {},
-  github: {}
+  github: {},
+  accessToken: String,
+  refreshToken: String
 });
 
 /**
