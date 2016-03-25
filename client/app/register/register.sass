@@ -1,4 +1,4 @@
-@import '../../assets/styles/mixin';
+@import '../../assets/styles/mixin'
 
 // .register-type {
 //   @include full-screen;
@@ -14,12 +14,9 @@
 //   }
 // }
 
-.register-controller {
-  @include full-screen;
-  .top {
-    height: 48px;
-    h1.title {
-      margin: 0;
-    }
-  }
-}
+.register-controller
+  +full-screen
+  .top
+    height: 48px
+    h1.title
+      margin: 0
