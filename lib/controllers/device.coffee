@@ -7,7 +7,6 @@ Device = mongoose.model('Device')
 
 exports.getDevices = (req, res) ->
   oauth2Request req.user, {method: 'GET', url: 'https://api.encoredtech.com/1.2/devices/list', json: true}, (e, body, res2) ->
-    console.log body
 
     if e
       console.error(e.stack)
