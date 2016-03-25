@@ -3,4 +3,5 @@
     h1.title {{ currentRegisterTitle }}
   .body(ui-view="")
   .footer
-    button(ng-click="goNextState()") 다음
+    button(ng-click="goNextState()")
+      | {{ $state.is('register.action') ? '완료' : '다음' }}

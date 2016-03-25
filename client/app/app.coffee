@@ -4,9 +4,10 @@ angular.module 'energyHackathonApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
+  'ngAnimate',
   'btford.socket-io',
   'ui.router',
-  'dndLists'
+  'toastr'
 ]
 .config ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) ->
   # $urlRouterProvider
