@@ -31,3 +31,5 @@ angular.module 'energyHackathonApp'
       return '00 ' + $scope.minute + ' ' + $scope.hour + ' * * *'
     else # if $scope.period is '시'
       return '00 ' + $scope.minute + ' * * * *'
+
+  $scope.createRecipe = () ->

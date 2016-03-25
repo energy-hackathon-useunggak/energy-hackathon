@@ -116,7 +116,6 @@ exports.getDevices = function(req, res) {
       console.error(e.stack);
       return res.sendStatus(500);
     }
-
     res.send(body);
   });
 };
