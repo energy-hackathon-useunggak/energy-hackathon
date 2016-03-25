@@ -1,7 +1,7 @@
 .register-type
   .trigger
     label(for="datetime") 날짜 / 시간
-    input(type="checkbox" name="datetime")
+    input(type="radio" name="type" ng-model="recipe.type" value="datetime")
   .trigger
     label(for="usage") 전력 사용량
-    input(type="checkbox" name="usage")
+    input(type="radio" name="type" ng-model="recipe.type" value="usage")
