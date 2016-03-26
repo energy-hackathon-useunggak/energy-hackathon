@@ -82,7 +82,7 @@ class Trigger
 
     if evt is 'publish'
       log 'Got publish event: ', data
-      actions.execute(data.action, data)
+      actions.execute(data.type, data)
 
 
 module.exports = exports = Trigger

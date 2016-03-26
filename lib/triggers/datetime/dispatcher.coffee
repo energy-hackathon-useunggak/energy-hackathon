@@ -12,6 +12,7 @@ process.on 'message', (data) ->
       console.log 'tick'
       process.send
         event: 'publish'
+        type: 'datetime'
         data: data.data
     , null, true
 
