@@ -1,5 +1,8 @@
 'use strict'
 
+debug = require 'debug'
+log   = debug 'energy-hackathon:actions'
+
 actions = Object.create null
 
 actions.on = require './on'
@@ -12,4 +15,8 @@ exports.execute = (type, data) ->
 
   return console.error('Specified action not exists, ignoring... (type: %s)', type) unless action
 
+  log 'calling action with data: ', data
+
   action data
+
+  log('Called action %s handler', type)
