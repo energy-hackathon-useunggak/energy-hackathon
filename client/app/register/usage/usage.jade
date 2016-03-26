@@ -4,7 +4,7 @@
     | 분 동안, 
     .select-wrapper
       select(ng-model="recipe.usage.device")
-        option(ng-repeat="device in devices" value="{{ device.uuid }}") {{ device.name }}
+        option(ng-repeat="device in devices" value="{{ device._id }}") {{ device.name }}
     | 가 사용한 전력의 평균이
   .form-string
     input(type="number" ng-model="recipe.usage.value")
@@ -17,7 +17,7 @@
   .form-string
     .select-wrapper
       select(ng-model="recipe.device")
-        option(ng-repeat="device in devices" value="{{ device.uuid }}") {{ device.name }}
+        option(ng-repeat="device in devices" value="{{ device._id }}") {{ device.name }}
     | 의 전원을 
     .select-wrapper
       select(ng-model="recipe.action")

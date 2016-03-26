@@ -22,7 +22,7 @@
   .form-string
     .select-wrapper
       select(ng-model="recipe.device")
-        option(ng-repeat="device in devices" value="{{ device.uuid }}") {{ device.name }}
+        option(ng-repeat="device in devices" value="{{ device._id }}") {{ device.name }}
     | 의 전원을 
     .select-wrapper
       select(ng-model="recipe.action")

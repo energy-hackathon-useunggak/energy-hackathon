@@ -92,8 +92,8 @@ angular.module 'energyHackathonApp'
 #
 #    $scope.newThing = ''
 
-  $scope.$on '$destroy', ->
-    socket.unsyncUpdates 'thing'
+  # $scope.$on '$destroy', ->
+  #   socket.unsyncUpdates 'thing'
 
   $scope.loginOauth = (provider) ->
     $window.location.href = '/auth/' + provider
