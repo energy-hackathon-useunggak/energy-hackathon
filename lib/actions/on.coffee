@@ -1,13 +1,19 @@
 'use strict'
 
 # Module dependencies.
+debug     = require 'debug'
 request   = require 'request'
 mongoose  = require 'mongoose'
 User      = mongoose.model 'User'
 
 
+log       = debug 'energy-hackathon:action:on'
+
 module.exports = exports = (data) ->
+  log 'Got request', data
   return unless data && data.user && data.uuid
+
+  log 'request data valid... calling api...'
 
   User.findById data.user
   .exec (e, user) ->
