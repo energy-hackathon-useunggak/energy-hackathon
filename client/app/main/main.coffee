@@ -7,3 +7,4 @@ angular.module 'energyHackathonApp'
     url: '/'
     templateUrl: 'app/main/main.html'
     controller: 'MainCtrl'
+    abstract: true

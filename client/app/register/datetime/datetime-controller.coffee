@@ -28,4 +28,4 @@ angular.module 'energyHackathonApp'
     Recipe.save $scope.recipe
     .$promise.then (res) ->
       toastr.success '성공적으로 설정했습니다.'
-      $state.go 'main'
+      $state.go 'main.type'

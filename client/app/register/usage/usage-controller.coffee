@@ -13,4 +13,4 @@ angular.module 'energyHackathonApp'
     Recipe.save $scope.recipe
     .$promise.then () ->
       toastr.success '성공적으로 설정되었습니다.'
-      $state.go 'main'
+      $state.go 'main.type'
