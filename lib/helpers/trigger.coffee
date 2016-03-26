@@ -4,6 +4,7 @@
 path          = require 'path'
 childProcess  = require 'child_process'
 debug         = require 'debug'
+actions       = require '../actions'
 
 # Module-specific configurations.
 
@@ -81,6 +82,7 @@ class Trigger
 
     if evt is 'publish'
       log 'Got publish event: ', data
-      # @todo Run specified Action.
+      actions.execute(data.action, data)
+
 
 module.exports = exports = Trigger

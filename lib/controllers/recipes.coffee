@@ -1,6 +1,7 @@
 
 mongoose = require 'mongoose'
 triggers = require '../triggers/'
+Device = mongoose.model 'Device'
 Recipe = mongoose.model 'Recipe'
 
 exports.index = (req, res) ->
@@ -22,5 +23,12 @@ exports.create = (req, res) ->
       when 'usage' then {}
       else {}
 
-    triggers.create newRecipe.type, data, (e) ->
-      console.error(e.stack) if e
+    Device.findById newRecipe.device
+    .exec (e, device) ->
+      return console.error(e.stack) if e
+
+      data.uuid = device.uuid
+      data.action = newRecipe.action
+
+      triggers.create newRecipe.type, data, (e) ->
+        console.error(e.stack) if e
