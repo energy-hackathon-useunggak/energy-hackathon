@@ -28,6 +28,7 @@ exports.create = (req, res) ->
       return console.error(e.stack) if e
       return console.error('Device not found (_id: %s)', newRecipe.device) unless device
 
+      data.user = newRecipe.user
       data.uuid = device.uuid
       data.action = newRecipe.action
 
