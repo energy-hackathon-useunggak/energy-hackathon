@@ -55,8 +55,8 @@ process.on 'message', (data) ->
 
                 log 'avg: %d / value: %d', avg, data.data.usage.value
 
-                willTrigger = (data.data.condition is 'over' and avg >= data.data.value) ||
-                 (data.data.condition is 'under' and avg < data.data.value)
+                willTrigger = (data.data.usage.condition is 'over' and avg >= data.data.usage.value) ||
+                 (data.data.usage.condition is 'under' and avg < data.usage.data.value)
 
                 if willTrigger
                   process.send
