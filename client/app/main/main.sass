@@ -1,6 +1,33 @@
 @import ../../assets/styles/mixin
 
 .main-controller
+  .section
+    height: 100%
+    background-repeat: no-repeat
+    background-position: center center
+    background-size: cover
+    -webkit-background-size: cover
+    -moz-background-size: cover
+    -o-background-size: cover
+    cursor: pointer
+    img.bg-image
+      height: 100%
+      width: auto
+      @media screen and (min-aspect-ratio: 16/9)
+        width: 100%
+        height: auto
+      position: absolute
+      left: -9999px
+      right: -9999px
+      top: -9999px
+      bottom: -9999px
+      margin: auto
+      +transition(opacity 0.6s ease-out)
+      opacity: 1
+      &.ng-hide-remove, &.ng-hide-add-active.ng-hide-add
+        opacity: 0
+      &.ng-hide-remove-active.ng-hide-remove, &.ng-hide-add
+        opacity: 1
   +full-screen
   .mid-container
     +vertical-center
