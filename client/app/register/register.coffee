@@ -8,15 +8,15 @@ angular.module 'energyHackathonApp'
     templateUrl: 'app/register/register.html'
     controller: 'RegisterCtrl'
     abstract: true
-  .state 'register.type',
-    url: '/type'
+  .state 'main.type',
+    url: ''
     templateUrl: 'app/register/steps/type.html'
-  .state 'register.datetime',
-    url: '/datetime'
+  .state 'main.datetime',
+    url: 'datetime'
     templateUrl: 'app/register/datetime/datetime.html'
     controller: 'DatetimeCtrl'
-  .state 'register.usage',
-    url: '/usage'
+  .state 'main.usage',
+    url: 'usage'
     templateUrl: 'app/register/usage/usage.html'
     controller: 'UsageCtrl'
   .state 'register.action',

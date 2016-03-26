@@ -23,10 +23,9 @@ angular.module 'energyHackathonApp'
 
   $scope.createRecipe = () ->
     $scope.recipe.user = $scope.user._id
-    # $scope.recipe.Date = getCronDate()
-    $scope.recipe.Date = '* * * * * *'
+    $scope.recipe.Date = getCronDate()
     $scope.recipe.type = 'datetime'
     Recipe.save $scope.recipe
     .$promise.then (res) ->
       toastr.success '성공적으로 설정했습니다.'
-      $state.go 'main'
+      $state.go 'main.type'
