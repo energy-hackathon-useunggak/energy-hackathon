@@ -10,6 +10,6 @@ actions.toggle = require './toggle'
 exports.execute = (type, data) ->
   action = actions[type]
 
-  return done(new Error('Failed to find specified type')) unless action
+  return console.error('Specified action not exists, ignoring... (type: %s)', type) unless action
 
   action data
