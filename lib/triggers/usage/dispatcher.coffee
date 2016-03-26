@@ -53,7 +53,7 @@ process.on 'message', (data) ->
               if queue.length is maxSize
                 avg = queue.reduce(((memo, x) -> memo + x), 0) / queue.length / 1000
 
-                log 'avg: %d / value: %d', avg, data.data.Usage.value
+                log 'avg: %d / value: %d', avg, data.data.usage.value
 
                 willTrigger = (data.data.condition is 'over' and avg >= data.data.value) ||
                  (data.data.condition is 'under' and avg < data.data.value)

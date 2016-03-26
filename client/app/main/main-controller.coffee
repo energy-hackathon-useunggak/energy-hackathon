@@ -35,11 +35,11 @@ angular.module 'energyHackathonApp'
       else
         recipe.desc = '매 시 ' + date.minute + '분 마다 '
     else
-      recipe.desc = "#{recipe.usage.minute}분 동안 #{recipe.usage.device.name} 전력 평균이 "
-      if recipe.usage.condition is 'under'
-        recipe.desc += recipe.usage.value + 'W 미만이면 '
+      recipe.desc = "#{recipe.Usage.minute}분 동안 #{recipe.Usage.device.name} 전력 평균이 "
+      if recipe.Usage.condition is 'under'
+        recipe.desc += recipe.Usage.value + 'W 미만이면 '
       else
-        recipe.desc += recipe.usage.value + 'W 이상이면 '
+        recipe.desc += recipe.Usage.value + 'W 이상이면 '
 
     recipe.desc += recipe.device.name + '의 전원을 '
     if recipe.action is 'on'
