@@ -1,16 +1,16 @@
 .register-usage
   .form-string
-    input(type="number" ng-model="recipe.usage.minute")
-    | 분 동안, 
+    input(type="number" ng-model="recipe.Usage.minute")
+    | 분 동안,
     .select-wrapper
-      select(ng-model="recipe.usage.device")
+      select(ng-model="recipe.Usage.device")
         option(ng-repeat="device in devices" value="{{ device._id }}") {{ device.name }}
     | 가 사용한 전력의 평균이
   .form-string
-    input(type="number" ng-model="recipe.usage.value")
-    | W 
+    input(type="number" ng-model="recipe.Usage.value")
+    | W
     .select-wrapper
-      select(ng-model="recipe.usage.condition")
+      select(ng-model="recipe.Usage.condition")
         option(value="over") 이상
         option(value="under") 미만
     | 일 때
@@ -18,7 +18,7 @@
     .select-wrapper
       select(ng-model="recipe.device")
         option(ng-repeat="device in devices" value="{{ device._id }}") {{ device.name }}
-    | 의 전원을 
+    | 의 전원을
     .select-wrapper
       select(ng-model="recipe.action")
         option(value="on") 켭니다

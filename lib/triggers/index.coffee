@@ -2,11 +2,13 @@
 
 _               = require 'underscore'
 DateTimeTrigger = require './datetime/'
+UsageTrigger    = require './usage/'
 
 triggers = Object.create null
 
 
 triggers.datetime = new DateTimeTrigger()
+triggers.usage  = new UsageTrigger()
 
 _.each triggers, (trigger) -> trigger.run()
 

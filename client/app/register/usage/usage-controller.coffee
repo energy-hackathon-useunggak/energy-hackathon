@@ -18,11 +18,12 @@ angular.module 'energyHackathonApp'
 #  ]
 
   $scope.recipe =
-    usage:
+    Usage:
       calc: 'average'
 
   $scope.createRecipe = () ->
     $scope.recipe.type = 'usage'
+    $scope.recipe.user = $scope.user._id
     Recipe.save $scope.recipe
     .$promise.then () ->
       toastr.success '성공적으로 설정되었습니다.'

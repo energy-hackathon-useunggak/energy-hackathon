@@ -1,8 +1,8 @@
-
-mongoose = require 'mongoose'
-triggers = require '../triggers/'
-Device = mongoose.model 'Device'
-Recipe = mongoose.model 'Recipe'
+_         = require 'underscore'
+mongoose  = require 'mongoose'
+triggers  = require '../triggers/'
+Device    = mongoose.model 'Device'
+Recipe    = mongoose.model 'Recipe'
 
 exports.index = (req, res) ->
     Recipe.find
@@ -28,9 +28,15 @@ exports.create = (req, res) ->
       return console.error(e.stack) if e
       return console.error('Device not found (_id: %s)', newRecipe.device) unless device
 
+
       data.user = newRecipe.user
-      data.uuid = device.uuid
       data.action = newRecipe.action
+
+      console.log newRecipe, newRecipe.Usage
+      console.log data
+
+      data.uuid = device.uuid
+      data.usage = newRecipe.toObject().Usage if newRecipe.type is 'usage'
 
       triggers.create newRecipe.type, data, (e) ->
         console.error(e.stack) if e
