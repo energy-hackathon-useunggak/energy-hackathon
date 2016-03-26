@@ -2,7 +2,14 @@
   //ul.recipe-list
   //  li.recipe(ng-repeat="recipe in recipes")
   //    {{ recipe.desc }}
-  .section(style="background-image:url(/assets/fonts/login.jpg)" ui-sref="register.type")
+  
+  .section(ng-if="!user._id" style="background-image:url('assets/fonts/main.jpg')" ng-click='loginOauth("encored-enertalk")')
+  .body(ui-view="")
+  aside
+    img.logo(ng-src="{{ 'assets/fonts/logo.png' }}")
+    ul.recipe-list
+      li.recipe(ng-repeat="recipe in recipes")
+        | {{ recipe.desc }}
 
 
   //- .mid-container

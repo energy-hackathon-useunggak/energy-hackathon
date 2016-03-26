@@ -23,8 +23,7 @@ angular.module 'energyHackathonApp'
 
   $scope.createRecipe = () ->
     $scope.recipe.user = $scope.user._id
-    # $scope.recipe.Date = getCronDate()
-    $scope.recipe.Date = '* * * * * *'
+    $scope.recipe.Date = getCronDate()
     $scope.recipe.type = 'datetime'
     Recipe.save $scope.recipe
     .$promise.then (res) ->

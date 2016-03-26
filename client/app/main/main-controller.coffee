@@ -1,35 +1,36 @@
 'use strict'
 
 angular.module 'energyHackathonApp'
-.controller 'MainCtrl', ($scope, $http, Device, $window, Auth) ->
-  user = Auth.getCurrentUser()
-  console.log user
+.controller 'MainCtrl', ($scope, $http, Device, Recipe, $window, Auth) ->
+  $scope.user = Auth.getCurrentUser()
 
-  $scope.recipes = [
-    user: '56f4ccc45b250b8c6d11cba6'
-    action: 'toggle'
-    date: '00 30 12 * * *'
-    device:
-      _id: '2'
-      name: '다리미'
-    type: 'datetime'
-    usage: { }
-  ,
-    user: '56f4ccc45b250b8c6d11cba6'
-    action: 'off'
-    device:
-      _id: '3'
-      name: '냉장고'
-    type: 'usage'
-    usage:
-      calc: 'average'
-      condition: 'under'
-      device:
-        _id: '3'
-        name: '냉장고'
-      minute: 30
-      value: 12
-  ]
+  # $scope.recipes = [
+  #   user: '56f4ccc45b250b8c6d11cba6'
+  #   action: 'toggle'
+  #   date: '00 30 12 * * *'
+  #   device:
+  #     _id: '2'
+  #     name: '다리미'
+  #   type: 'datetime'
+  #   usage: { }
+  # ,
+  #   user: '56f4ccc45b250b8c6d11cba6'
+  #   action: 'off'
+  #   device:
+  #     _id: '3'
+  #     name: '냉장고'
+  #   type: 'usage'
+  #   usage:
+  #     calc: 'average'
+  #     condition: 'under'
+  #     device:
+  #       _id: '3'
+  #       name: '냉장고'
+  #     minute: 30
+  #     value: 12
+  # ]
+
+
 
   $scope.daysofweek = [ '일', '월', '화', '수', '목', '금', '토' ]
 
@@ -52,7 +53,7 @@ angular.module 'energyHackathonApp'
 
   getDescription = (recipe) ->
     if recipe.type is 'datetime'
-      date = parseCronDate recipe.date
+      date = parseCronDate recipe.Date
       if date.period is '주'
         recipe.desc = '매 주 ' + $scope.daysofweek[date.dayofweek] + '요일 '
         + date.hour + '시 마다'
@@ -78,22 +79,16 @@ angular.module 'energyHackathonApp'
       recipe.desc += '끕니다'
     else
       recipe.desc += '토글합니다'
+
     return recipe
 
-  $scope.recipes = $scope.recipes.map getDescription
+  # $scope.recipes = Recipe.get().map (recipe) ->
+  #   console.log recipe
+  Recipe.get()
+  .$promise.then (recipes) ->
+    $scope.recipes = recipes.map getDescription
 
-  $scope.addThing = ->
-    Device.get()
-    .$promise.then (devices) ->
-      console.log devices
-#    return if $scope.newThing is ''
-#    $http.post '/api/things',
-#      name: $scope.newThing
-#
-#    $scope.newThing = ''
-
-  # $scope.$on '$destroy', ->
-  #   socket.unsyncUpdates 'thing'
+  # $scope.recipes = $scope.recipes.map getDescription
 
   $scope.loginOauth = (provider) ->
     $window.location.href = '/auth/' + provider
